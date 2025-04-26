@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ابدأ رحلتك نحو النجاح في عالم التجارة الإلكترونية</title>
+<style>
+    body {
+        font-family: 'Tajawal', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f2f9ff;
+        color: #333;
+        text-align: center;
+    }
+    header {
+        background: #4facfe;
+        padding: 20px;
+    }
+    header img {
+        width: 100px;
+        margin-bottom: 15px;
+    }
+    nav {
+        margin: 10px 0;
+    }
+    nav button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: none;
+        background: #fff;
+        color: #4facfe;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    nav button:hover {
+        background: #e0f7fa;
+    }
+    section {
+        padding: 40px 20px;
+    }
+    .cta a {
+        background-color: #ff9800;
+        color: #fff;
+        padding: 15px 30px;
+        font-size: 20px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+    .cta a:hover {
+        background-color: #fb8c00;
+    }
+    .testimonials {
+        background-color: #e0f7fa;
+        padding: 40px 20px;
+    }
+    .testimonial {
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .testimonial h3 {
+        color: #00796b;
+    }
+    footer {
+        background: #4facfe;
+        padding: 20px;
+        margin-top: 40px;
+    }
+    footer a {
+        background-color: #fff;
+        color: #4facfe;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="https://www.dynamicmarketing.eu/wp-content/uploads/2018/06/ecommerce.logo_.png" alt="Ecommerce Logo">
+    <h1 id="title">ابدأ رحلتك نحو النجاح في عالم التجارة الإلكترونية</h1>
+    <nav>
+        <button onclick="setLanguage('ar')">العربية</button>
+        <button onclick="setLanguage('en')">English</button>
+    </nav>
+</header>
+
+<section>
+    <p id="intro">
+        في عصر التحول الرقمي السريع، أصبحت التجارة الإلكترونية واحدة من أهم وسائل تحقيق الدخل وتوسيع الأعمال. سواء كنت مبتدئًا أو صاحب خبرة، نحن هنا لنرشدك خطوة بخطوة نحو بناء مشروعك الإلكتروني الناجح.
+    </p>
+    <div class="cta">
+        <a href="#">انضم إلينا الآن</a>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2 id="experiences-title">التجارب</h2>
+    <div class="testimonial">
+        <h3 id="ahmed-title">تجربة أحمد:</h3>
+        <p id="ahmed-text">“كنت أعمل في وظيفة تقليدية براتب محدود، ومع بداية رحلتي في التجارة الإلكترونية تمكنت من إنشاء متجري الخاص وتحقيق أول ألف دولار خلال ثلاثة أشهر فقط. اليوم، أعمل بدوام كامل على مشروعي الخاص وأعيش الحرية التي لطالما حلمت بها.”</p>
+    </div>
+    <div class="testimonial">
+        <h3 id="sara-title">تجربة سارة:</h3>
+        <p id="sara-text">“بفضل التعلم المستمر والمثابرة، استطعت أن أحول شغفي بالموضة إلى متجر إلكتروني يحقق مبيعات مذهلة شهريًا. التجارة الإلكترونية لم تغير دخلي فقط، بل غيرت حياتي بالكامل.”</p>
+    </div>
+    <div class="testimonial">
+        <h3 id="youssef-title">تجربة يوسف:</h3>
+        <p id="youssef-text">“في البداية واجهت صعوبات كثيرة، ولكن مع الإصرار واختيار الأدوات الصحيحة، تمكنت من بناء علامة تجارية ناجحة عبر الإنترنت. كل ما تحتاجه هو خطة واضحة وإرادة قوية.”</p>
+    </div>
+</section>
+
+<footer>
+    <p id="contact">تواصل معنا عبر تيليغرام</p>
+    <a href="https://t.me/+212778736529" target="_blank">راسلنا الآن</a>
+</footer>
+
+<script>
+function setLanguage(lang) {
+    if(lang === 'ar') {
+        document.getElementById('title').innerText = 'ابدأ رحلتك نحو النجاح في عالم التجارة الإلكترونية';
+        document.getElementById('intro').innerText = 'في عصر التحول الرقمي السريع، أصبحت التجارة الإلكترونية واحدة من أهم وسائل تحقيق الدخل وتوسيع الأعمال. سواء كنت مبتدئًا أو صاحب خبرة، نحن هنا لنرشدك خطوة بخطوة نحو بناء مشروعك الإلكتروني الناجح.';
+        document.getElementById('experiences-title').innerText = 'التجارب';
+        document.getElementById('ahmed-title').innerText = 'تجربة أحمد:';
+        document.getElementById('ahmed-text').innerText = '“كنت أعمل في وظيفة تقليدية براتب محدود، ومع بداية رحلتي في التجارة الإلكترونية تمكنت من إنشاء متجري الخاص وتحقيق أول ألف دولار خلال ثلاثة أشهر فقط. اليوم، أعمل بدوام كامل على مشروعي الخاص وأعيش الحرية التي لطالما حلمت بها.”';
+        document.getElementById('sara-title').innerText = 'تجربة سارة:';
+        document.getElementById('sara-text').innerText = '“بفضل التعلم المستمر والمثابرة، استطعت أن أحول شغفي بالموضة إلى متجر إلكتروني يحقق مبيعات مذهلة شهريًا. التجارة الإلكترونية لم تغير دخلي فقط، بل غيرت حياتي بالكامل.”';
+        document.getElementById('youssef-title').innerText = 'تجربة يوسف:';
+        document.getElementById('youssef-text').innerText = '“في البداية واجهت صعوبات كثيرة، ولكن مع الإصرار واختيار الأدوات الصحيحة، تمكنت من بناء علامة تجارية ناجحة عبر الإنترنت. كل ما تحتاجه هو خطة واضحة وإرادة قوية.”';
+        document.getElementById('contact').innerText = 'تواصل معنا عبر تيليغرام';
+    } else {
+        document.getElementById('title').innerText = 'Start your journey towards success in the world of E-commerce';
+        document.getElementById('intro').innerText = 'In this era of rapid digital transformation, E-commerce has become one of the most important means of generating income and expanding businesses. Whether you are a beginner or experienced, we are here to guide you step-by-step to build your successful E-commerce project.';
+        document.getElementById('experiences-title').innerText = 'Success Stories';
+        document.getElementById('ahmed-title').innerText = 'Ahmed's Experience:';
+        document.getElementById('ahmed-text').innerText = '"I used to work a regular job with a limited salary, but after starting my E-commerce journey, I built my own store and earned my first $1,000 in just three months. Today, I work full-time on my project and live the freedom I always dreamed of."';
+        document.getElementById('sara-title').innerText = 'Sara's Experience:';
+        document.getElementById('sara-text').innerText = '"Thanks to continuous learning and persistence, I turned my passion for fashion into a successful online store achieving amazing monthly sales. E-commerce didn't just change my income, it changed my entire life."';
+        document.getElementById('youssef-title').innerText = 'Youssef's Experience:';
+        document.getElementById('youssef-text').innerText = '"At first, I faced many difficulties, but with persistence and choosing the right tools, I built a successful online brand. All you need is a clear plan and strong will."';
+        document.getElementById('contact').innerText = 'Contact us via Telegram';
+    }
+}
+</script>
+
+</body>
+</html>
