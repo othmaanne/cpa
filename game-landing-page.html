@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: #f8fafc;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+    }
+    
+    .game-title {
+      font-weight: 800;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transform: translateY(30px);
+      text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+    }
+    
+    .game-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      color: #94a3b8;
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .game-image {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(34, 197, 94, 0.1);
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .download-btn {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      font-weight: 600;
+      font-size: 1.25rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .download-btn:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+    }
+    
+    .download-btn:active {
+      transform: scale(0.98);
+    }
+    
+    .download-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.3s;
+    }
+    
+    .download-btn:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s, bounce 2s ease-in-out infinite 2s;
+    }
+    
+    .scroll-indicator svg {
+      width: 30px;
+      height: 30px;
+      fill: #94a3b8;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 0.7; }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) translateX(-50%); }
+      50% { transform: translateY(10px) translateX(-50%); }
+    }
+    
+    .features {
+      padding: 100px 0;
+      opacity: 0;
+    }
+    
+    .features-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4ade80;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .feature-desc {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    
+    .particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(74, 222, 128, 0.2);
+      pointer-events: none;
+      opacity: 0;
+    }
+    
+    .footer {
+      padding: 40px 0;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-link {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #4ade80;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: #4ade80;
+      transform: translateY(-3px);
+    }
+    
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #f8fafc;
+    }
+    
+    @media (max-width: 768px) {
+      .game-title {
+        font-size: 2.5rem;
+      }
+      
+      .game-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .game-image {
+        width: 90%;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles-container" id="particles"></div>
+  
+  <section class="hero">
+    <h1 class="game-title">Casual Game</h1>
+    <p class="game-subtitle">Experience the most engaging and addictive gameplay that will keep you entertained for hours.</p>
+    <img src="https://m.media-amazon.com/images/I/81geiYn+soL.png" alt="Game Promotional Image" class="game-image">
+    <button class="download-btn">Download Now</button>
+    
+    <div class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+      </svg>
+    </div>
+  </section>
+  
+  <section class="features container">
+    <h2 class="features-title">Game Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3 class="feature-title">Intuitive Controls</h3>
+        <p class="feature-desc">Easy to learn, challenging to master. Pick up and play in seconds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3 class="feature-title">Competitive Leaderboards</h3>
+        <p class="feature-desc">Challenge your friends and climb the global rankings.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3 class="feature-title">Stunning Graphics</h3>
+        <p class="feature-desc">Immerse yourself in beautiful visuals and smooth animations.</p>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="copyright">
+        © 2025 Casual Game. All rights reserved.
+      </div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Contact Us</a>
+      </div>
+      <div class="social-icons">
+        <a href="#" class="social-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize animations when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animate hero elements
+      gsap.to('.game-title', { opacity: 1, y: 0, duration: 1, delay: 0.3 });
+      gsap.to('.game-subtitle', { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+      gsap.to('.game-image', { opacity: 1, y: 0, duration: 1, delay: 0.7 });
+      gsap.to('.download-btn', { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+      
+      // Animate features section
+      gsap.to('.features', { 
+        opacity: 1, 
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.features',
+          start: 'top 80%',
+        }
+      });
+      
+      // Create particle effects
+      createParticles();
+      
+      // Initialize scroll animations for feature cards
+      gsap.utils.toArray('.feature-card').forEach((card, i) => {
+        gsap.from(card, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          delay: i * 0.2,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+          }
+        });
+      });
+    });
+    
+    // Function to create floating particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size between 5 and 20px
+        const size = Math.random() * 15 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Set initial position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        
+        container.appendChild(particle);
+        
+        // Animate each particle
+        gsap.to(particle, {
+          x: `random(-150, 150)`,
+          y: `random(-150, 150)`,
+          opacity: `random(0.1, 0.4)`,
+          duration: `random(15, 30)`,
+          delay: `random(0, 5)`,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+      }
+    }
+    
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
